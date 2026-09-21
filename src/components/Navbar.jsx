@@ -1,115 +1,89 @@
 import React, { useState } from 'react';
-import { Menu, X, Phone, Calendar } from 'lucide-react';
+import { Calendar, Menu, X, Phone } from 'lucide-react';
 
 const Navbar = ({ onOpenBooking }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const handleNavClick = (e, targetId) => {
-    e.preventDefault();
-    setIsMobileMenuOpen(false);
-
-    if (targetId === 'home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const navLinks = [
+    { name: 'Home', href: '#home' },
+    { name: 'Programs', href: '#services' },
+    { name: 'About Coach', href: '#about' },
+    { name: 'Contact', href: '#contact' },
+  ];
+
   return (
-    <nav className="sticky top-0 z-40 bg-[#0D0D0D]/90 backdrop-blur-md border-b border-neutral-800">
+    <header className="sticky top-0 z-40 w-full bg-[#0D0D0D]/90 backdrop-blur-md border-b border-neutral-800/80 transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
-          {/* Logo */}
-          <a 
-            href="#home" 
-            onClick={(e) => handleNavClick(e, 'home')}
-            className="flex items-center space-x-3 cursor-pointer"
-          >
-            <img 
-              src="/img1.jpg" 
-              alt="LAX FITPRO Logo" 
-              className="h-12 w-auto object-contain rounded border border-neutral-700" 
-            />
-            <div>
-              <span className="text-xl font-black text-white tracking-tight block leading-none">
+          {/* Logo with img1.jpg */}
+          <a href="#home" className="flex items-center space-x-3 group">
+            <div className="w-12 h-12 rounded-xl overflow-hidden border border-neutral-700 bg-neutral-900 group-hover:border-[#E61C24] transition-all shrink-0">
+              <img 
+                src="/img1.jpg" 
+                alt="LAX FITPRO Logo" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-xl font-black text-white uppercase tracking-tight leading-none">
                 LAX <span className="text-[#E61C24]">FITPRO</span>
               </span>
-              <span className="text-[10px] text-gray-400 font-medium uppercase tracking-widest">
-                Personal Coaching • Doha
+              <span className="text-[10px] text-gray-400 uppercase tracking-widest font-semibold mt-1">
+                Personal Training • Doha
               </span>
             </div>
           </a>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center space-x-8">
-            <a 
-              href="#home" 
-              onClick={(e) => handleNavClick(e, 'home')}
-              className="text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-[#E61C24] transition-colors"
-            >
-              Home
-            </a>
-            <a 
-              href="#services" 
-              onClick={(e) => handleNavClick(e, 'services')}
-              className="text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-[#E61C24] transition-colors"
-            >
-              Services
-            </a>
-            <a 
-              href="#senior-fitness" 
-              onClick={(e) => handleNavClick(e, 'senior-fitness')}
-              className="text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-[#D4AF37] transition-colors"
-            >
-              Senior Fitness
-            </a>
-            <a 
-              href="#health-hub" 
-              onClick={(e) => handleNavClick(e, 'health-hub')}
-              className="text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-[#E61C24] transition-colors"
-            >
-              Health Hub
-            </a>
-            <a 
-              href="#contact" 
-              onClick={(e) => handleNavClick(e, 'contact')}
-              className="text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-[#E61C24] transition-colors"
-            >
-              Contact
-            </a>
-          </div>
+          <nav className="hidden md:flex items-center space-x-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-[#E61C24] transition-colors"
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
 
-          {/* Action Buttons */}
+          {/* Desktop CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
             <a
               href="https://wa.me/97450619372"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center space-x-1.5 text-xs font-bold text-emerald-400 bg-emerald-950/40 border border-emerald-800/80 px-3.5 py-2 rounded-xl hover:bg-emerald-900/40 transition-colors"
+              className="p-2.5 bg-neutral-900 border border-neutral-800 text-green-500 rounded-xl hover:bg-neutral-800 transition-colors"
+              title="Chat on WhatsApp"
             >
-              <Phone className="w-3.5 h-3.5" />
-              <span>5061 9372</span>
+              <Phone className="w-4 h-4" />
             </a>
 
             <button
               onClick={onOpenBooking}
-              className="flex items-center space-x-2 bg-[#E61C24] hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-xl transition-all shadow-md shadow-red-950/40"
+              className="flex items-center space-x-2 bg-[#E61C24] hover:bg-red-700 text-white font-bold text-xs uppercase tracking-wider px-5 py-3 rounded-xl transition-all shadow-md shadow-red-950/40"
             >
-              <Calendar className="w-3.5 h-3.5" />
-              <span>Book Free Trial</span>
+              <Calendar className="w-4 h-4" />
+              <span>Book Trial</span>
             </button>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-2">
+          <div className="md:hidden flex items-center space-x-3">
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-300 hover:text-white p-2 rounded-lg bg-neutral-900 border border-neutral-800"
+              onClick={onOpenBooking}
+              className="bg-[#E61C24] text-white font-bold text-xs uppercase tracking-wider px-3.5 py-2 rounded-lg"
+            >
+              Book
+            </button>
+            <button
+              onClick={toggleMobileMenu}
+              className="p-2 text-gray-400 hover:text-white rounded-lg bg-neutral-900 border border-neutral-800"
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -118,56 +92,36 @@ const Navbar = ({ onOpenBooking }) => {
         </div>
       </div>
 
-      {/* Mobile Dropdown Menu */}
+      {/* Mobile Navigation Dropdown */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-[#121212] border-b border-neutral-800 px-4 pt-2 pb-6 space-y-3">
-          <a
-            href="#home"
-            onClick={(e) => handleNavClick(e, 'home')}
-            className="block text-sm font-bold uppercase text-gray-300 hover:text-[#E61C24] py-2 border-b border-neutral-800/50"
-          >
-            Home
-          </a>
-          <a
-            href="#services"
-            onClick={(e) => handleNavClick(e, 'services')}
-            className="block text-sm font-bold uppercase text-gray-300 hover:text-[#E61C24] py-2 border-b border-neutral-800/50"
-          >
-            Services
-          </a>
-          <a
-            href="#senior-fitness"
-            onClick={(e) => handleNavClick(e, 'senior-fitness')}
-            className="block text-sm font-bold uppercase text-[#D4AF37] py-2 border-b border-neutral-800/50"
-          >
-            Senior Fitness
-          </a>
-          <a
-            href="#health-hub"
-            onClick={(e) => handleNavClick(e, 'health-hub')}
-            className="block text-sm font-bold uppercase text-gray-300 hover:text-[#E61C24] py-2 border-b border-neutral-800/50"
-          >
-            Health Hub
-          </a>
-          <a
-            href="#contact"
-            onClick={(e) => handleNavClick(e, 'contact')}
-            className="block text-sm font-bold uppercase text-gray-300 hover:text-[#E61C24] py-2 border-b border-neutral-800/50"
-          >
-            Contact
-          </a>
+        <div className="md:hidden bg-neutral-950 border-b border-neutral-800 px-4 pt-4 pb-6 space-y-4">
+          <div className="flex flex-col space-y-3">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-sm font-bold uppercase tracking-wider text-gray-300 hover:text-[#E61C24] py-1 transition-colors"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
 
-          <div className="pt-2 flex flex-col space-y-2">
-            <button
-              onClick={() => { setIsMobileMenuOpen(false); onOpenBooking(); }}
-              className="w-full bg-[#E61C24] text-white text-xs font-bold uppercase py-3 rounded-xl"
+          <div className="pt-2 border-t border-neutral-800 flex flex-col space-y-3">
+            <a
+              href="https://wa.me/97450619372"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center space-x-2 bg-neutral-900 border border-neutral-800 text-gray-200 text-xs font-bold uppercase py-3 rounded-xl"
             >
-              Book Free Trial Session
-            </button>
+              <Phone className="w-4 h-4 text-green-500" />
+              <span>WhatsApp: +974 5061 9372</span>
+            </a>
           </div>
         </div>
       )}
-    </nav>
+    </header>
   );
 };
 
