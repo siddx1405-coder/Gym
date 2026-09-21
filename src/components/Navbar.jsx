@@ -11,7 +11,7 @@ const Navbar = ({ onOpenBooking }) => {
   const navLinks = [
     { name: 'Home', href: '#home' },
     { name: 'Programs', href: '#services' },
-    { name: 'About Coach', href: '#about' },
+    { name: 'Health & Info', href: '#health-hub' },
     { name: 'Contact', href: '#contact' },
   ];
 
