@@ -30,11 +30,15 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Logic for sending email or storing booking request
     setIsSubmitted(true);
+    
+    // Redirects to WhatsApp with pre-filled booking details
+    const text = `Hello Coach LAX, I would like to book a free trial session.%0A%0A*Name:* ${encodeURIComponent(formData.name)}%0A*Phone:* ${encodeURIComponent(formData.phone)}%0A*Email:* ${encodeURIComponent(formData.email)}%0A*Program:* ${encodeURIComponent(formData.program)}%0A*Preferred Time:* ${encodeURIComponent(formData.preferredTime)}`;
+    
     setTimeout(() => {
+      window.open(`https://wa.me/97450619372?text=${text}`, '_blank');
       handleCloseBooking();
-    }, 2500);
+    }, 1500);
   };
 
   return (
@@ -71,10 +75,10 @@ function App() {
                   ✓
                 </div>
                 <h3 className="text-2xl font-bold text-white uppercase tracking-tight">
-                  Session Requested!
+                  Redirecting to WhatsApp...
                 </h3>
                 <p className="text-gray-300 text-sm">
-                  JazakAllah Khair! Coach LAX will review your preferred schedule and contact you shortly via WhatsApp or Email.
+                  Connecting you with Coach LAX to confirm your trial session timing.
                 </p>
               </div>
             ) : (
@@ -158,8 +162,7 @@ function App() {
                       >
                         <option value="Personal Training">Strength & Personal Training</option>
                         <option value="Circuit Training">Circuit & Fat Loss</option>
-                        <option value="Senior Fitness">Senior Wellness & Mobility</option>
-                        <option value="Kidney / Special Care">Special Care / Rehab Focus</option>
+                        <option value="Doorstep Coaching">Doorstep Personal Coaching</option>
                       </select>
                     </div>
 
