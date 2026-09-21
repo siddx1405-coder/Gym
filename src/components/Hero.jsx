@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, Award, Users, Target, ShieldCheck } from 'lucide-react';
+import { Calendar, ShieldCheck } from 'lucide-react';
 
 const Hero = ({ onOpenBooking }) => {
   return (
