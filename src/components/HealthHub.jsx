@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { BookOpen, Eye, Sparkles, X } from 'lucide-react';
+import { BookOpen, Eye, Sparkles, X, User, Calendar, ArrowRight } from 'lucide-react';
 
-const HealthHub = () => {
+const HealthHub = ({ onOpenBooking }) => {
   const [selectedTopic, setSelectedTopic] = useState(null);
 
+  // General Educational Topics
   const topics = [
     {
       id: 'diabetes',
@@ -44,89 +45,210 @@ const HealthHub = () => {
       ]
     },
     {
-      id: 'cholesterol',
-      title: "HDL Cholesterol Explained",
-      category: "Cardiovascular Health",
-      image: "/img9.jpg",
-      summary: "Understanding what 'good' HDL cholesterol really means and how high-density lipoproteins help carry cholesterol back to the liver.",
+      id: 'parentsfitness',
+      title: "Train Your Parents at Home Gym",
+      category: "Senior & Parent Wellness",
+      image: "/img7.jpg",
+      summary: "Healthy Parents, Happier Family! Safe and personalized 1-on-1 fitness coaching tailored specifically for your parents in Doha.",
       highlights: [
-        "HDL acts as a scavenger carrying cholesterol to the liver",
-        "Supports long-term cardiovascular health",
-        "Enhanced through consistent aerobic workouts and clean eating"
+        "Improve Health, Mobility, and Joint Support",
+        "Build Strength, Confidence, and Independence",
+        "Low Impact Workouts & Injury Prevention",
+        "Available At Your Home Gym with Certified Trainer"
       ]
     },
     {
-      id: 'potassium',
-      title: "Potassium: The Forgotten Nutrient",
-      category: "Nutrition & Electrolytes",
-      image: "/img10.jpg",
-      summary: "Essential mineral and electrolyte benefits for regulating fluid balance, blood pressure, and muscle contractions.",
+      id: 'kidsfitness',
+      title: "Make Your Kids Active & Strong",
+      category: "Youth & Kids Fitness",
+      image: "/img11.jpg",
+      summary: "Healthy Kids, Brighter Future! Fun and effective training plans designed to build stamina, confidence, and lifelong healthy habits.",
       highlights: [
-        "Supports heart health, muscle function, and nerve signaling",
-        "Rich sources: Bananas, Sweet Potatoes, Spinach, Avocados, Beans",
-        "Additional sources: Coconut Water, Tomatoes, Seeds, Yogurt"
+        "Build Stronger Body & Improve Stamina",
+        "Better Focus, Confidence & Mental Clarity",
+        "Boost Immunity & Healthy Weight Management",
+        "Available At Home, Gym, or Outdoor Activities"
       ]
     }
   ];
 
   return (
     <section id="health-hub" className="py-20 bg-[#0D0D0D] border-b border-neutral-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto">
           <span className="text-[#D4AF37] text-xs font-bold uppercase tracking-widest bg-neutral-900 border border-neutral-800 px-4 py-1.5 rounded-full inline-block mb-3">
-            Client Education Hub
+            Client Education & Booking Hub
           </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-white">
+          <h2 className="text-3xl sm:text-5xl font-black text-white">
             HEALTH & <span className="text-[#E61C24]">WELLNESS KNOWLEDGE</span>
           </h2>
           <p className="text-gray-400 text-sm sm:text-base mt-3">
-            We empower our clients with actionable knowledge on nutrition, movement mechanics, and disease prevention.
+            We empower our clients with actionable knowledge on nutrition, movement mechanics, and personalized 1-on-1 fitness sessions.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {topics.map((topic) => (
-            <div 
-              key={topic.id}
-              onClick={() => setSelectedTopic(topic)}
-              className="bg-neutral-900 border border-neutral-800 hover:border-[#D4AF37]/50 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-red-950/20 group flex flex-col justify-between"
-            >
+        {/* APPOINTMENT BOOKING SECTION (MALE & FEMALE OPTIONS) */}
+        <div>
+          <div className="text-center mb-8">
+            <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tight">
+              Book Your <span className="text-[#E61C24]">Personal Training Appointment</span>
+            </h3>
+            <p className="text-gray-400 text-xs sm:text-sm mt-1">
+              Select tailored training customized for Men or Women with Coach LAX in Doha
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            {/* Male Appointment Card */}
+            <div className="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden hover:border-[#E61C24]/50 transition-all group flex flex-col justify-between">
               <div>
-                <div className="relative h-52 overflow-hidden bg-black">
+                <div className="relative h-64 overflow-hidden bg-black">
                   <img 
-                    src={topic.image} 
-                    alt={topic.title}
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                    src="/img3.jpg" 
+                    alt="Male Fitness Personal Training" 
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-md border border-neutral-700 px-2.5 py-1 rounded-md text-[10px] font-bold text-[#D4AF37] uppercase tracking-wider">
-                    {topic.category}
+                  <div className="absolute top-3 left-3 bg-blue-950/80 backdrop-blur-md border border-blue-600/50 text-blue-400 px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
+                    <User className="w-3.5 h-3.5" /> Male Personal Training
                   </div>
                 </div>
 
-                <div className="p-5">
-                  <h3 className="text-lg font-bold text-white group-hover:text-[#E61C24] transition-colors mb-2">
-                    {topic.title}
-                  </h3>
-                  <p className="text-xs text-gray-400 leading-relaxed line-clamp-2">
-                    {topic.summary}
+                <div className="p-6">
+                  <h4 className="text-xl font-bold text-white group-hover:text-[#E61C24] transition-colors mb-2">
+                    Men's Fitness & Strength Program
+                  </h4>
+                  <p className="text-xs sm:text-sm text-gray-400 leading-relaxed mb-4">
+                    Tailored muscle building, fat loss, athletic conditioning, and posture correction designed specifically for men's body composition and fitness goals.
                   </p>
+                  <ul className="space-y-2 text-xs text-gray-300">
+                    <li className="flex items-center space-x-2">
+                      <span className="text-[#E61C24] font-bold">•</span>
+                      <span>Hypertrophy & Functional Strength</span>
+                    </li>
+                    <li className="flex items-center space-x-2">
+                      <span className="text-[#E61C24] font-bold">•</span>
+                      <span>Customized Diet & Caloric Breakdown</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
 
-              <div className="px-5 pb-5 pt-2 border-t border-neutral-800/80 flex items-center justify-between text-xs font-semibold text-[#D4AF37]">
-                <span className="flex items-center space-x-1">
-                  <BookOpen className="w-3.5 h-3.5" />
-                  <span>Read Guide</span>
-                </span>
-                <Eye className="w-4 h-4 text-gray-500 group-hover:text-[#D4AF37] transition-colors" />
+              <div className="p-6 pt-0">
+                <button
+                  onClick={onOpenBooking}
+                  className="w-full bg-[#E61C24] hover:bg-red-700 text-white font-bold text-xs uppercase tracking-wider py-3.5 rounded-xl transition-all flex items-center justify-center space-x-2 shadow-lg shadow-red-950/40"
+                >
+                  <Calendar className="w-4 h-4" />
+                  <span>Book Male Appointment</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
               </div>
             </div>
-          ))}
+
+            {/* Female Appointment Card */}
+            <div className="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden hover:border-[#E61C24]/50 transition-all group flex flex-col justify-between">
+              <div>
+                <div className="relative h-64 overflow-hidden bg-black">
+                  <img 
+                    src="/img4.jpg" 
+                    alt="Female Fitness Personal Training" 
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute top-3 left-3 bg-pink-950/80 backdrop-blur-md border border-pink-600/50 text-pink-400 px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
+                    <User className="w-3.5 h-3.5" /> Female Personal Training
+                  </div>
+                </div>
+
+                <div className="p-6">
+                  <h4 className="text-xl font-bold text-white group-hover:text-[#E61C24] transition-colors mb-2">
+                    Women's Toning & Fitness Program
+                  </h4>
+                  <p className="text-xs sm:text-sm text-gray-400 leading-relaxed mb-4">
+                    Specialized workout sessions focusing on body shaping, core stability, fat loss, and posture alignment with full privacy at home or gym.
+                  </p>
+                  <ul className="space-y-2 text-xs text-gray-300">
+                    <li className="flex items-center space-x-2">
+                      <span className="text-[#E61C24] font-bold">•</span>
+                      <span>Glute, Core & Body Toning Exercises</span>
+                    </li>
+                    <li className="flex items-center space-x-2">
+                      <span className="text-[#E61C24] font-bold">•</span>
+                      <span>Safe, Private & Flexible Scheduling</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="p-6 pt-0">
+                <button
+                  onClick={onOpenBooking}
+                  className="w-full bg-[#E61C24] hover:bg-red-700 text-white font-bold text-xs uppercase tracking-wider py-3.5 rounded-xl transition-all flex items-center justify-center space-x-2 shadow-lg shadow-red-950/40"
+                >
+                  <Calendar className="w-4 h-4" />
+                  <span>Book Female Appointment</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* EDUCATIONAL KNOWLEDGE CARDS */}
+        <div>
+          <div className="text-center mb-8">
+            <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tight">
+              Wellness & <span className="text-[#D4AF37]">Educational Guides</span>
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {topics.map((topic) => (
+              <div 
+                key={topic.id}
+                onClick={() => setSelectedTopic(topic)}
+                className="bg-neutral-900 border border-neutral-800 hover:border-[#D4AF37]/50 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-red-950/20 group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="relative h-52 overflow-hidden bg-black">
+                    <img 
+                      src={topic.image} 
+                      alt={topic.title}
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                    />
+                    <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-md border border-neutral-700 px-2.5 py-1 rounded-md text-[10px] font-bold text-[#D4AF37] uppercase tracking-wider">
+                      {topic.category}
+                    </div>
+                  </div>
+
+                  <div className="p-5">
+                    <h3 className="text-lg font-bold text-white group-hover:text-[#E61C24] transition-colors mb-2">
+                      {topic.title}
+                    </h3>
+                    <p className="text-xs text-gray-400 leading-relaxed line-clamp-2">
+                      {topic.summary}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="px-5 pb-5 pt-2 border-t border-neutral-800/80 flex items-center justify-between text-xs font-semibold text-[#D4AF37]">
+                  <span className="flex items-center space-x-1">
+                    <BookOpen className="w-3.5 h-3.5" />
+                    <span>Read Guide</span>
+                  </span>
+                  <Eye className="w-4 h-4 text-gray-500 group-hover:text-[#D4AF37] transition-colors" />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
       </div>
 
+      {/* POPUP MODAL FOR TOPICS */}
       {selectedTopic && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
           <div className="bg-[#141414] border border-neutral-700 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 relative shadow-2xl">
